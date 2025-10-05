@@ -21,8 +21,8 @@ Lab1/
 ├── Data/
 │ └── items.json # Начальные товары
 └── .gitignore
-└── README.md
 └── .env
+└── README.md
 ```
 
 ## Установка и запуск

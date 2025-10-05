@@ -10,16 +10,20 @@
 ## Структура проекта
 ```
 Lab1/
-├── Program.cs
-├── Lab1.csproj
-├── Core/
-│ ├── VendingMachine.cs # Логика работы автомата
-│ ├── AdminPanel.cs # Админ-панель
-│ └── Utils.cs # Вспомогательные функции
-├── Models/
-│ └── Item.cs # Класс модели товара
-├── Data/
-│ └── items.json # Начальные товары
+├── src
+│ ├── Program.cs
+│ ├── Lab1.csproj
+│ ├── Core/
+│ │ ├── VendingMachine.cs # Логика работы автомата
+│ │ ├── AdminPanel.cs # Админ-панель
+│ │ └── Utils.cs # Вспомогательные функции
+│ ├── Models/
+│ │ └── Item.cs # Класс модели товара
+│ ├── Data/
+│ │ └── items.json # Начальные товары
+├── tests
+│ ├── Lab1.Tests.csproj
+│ ├── Lab1Tests.cs
 └── .gitignore
 └── .env
 └── README.md

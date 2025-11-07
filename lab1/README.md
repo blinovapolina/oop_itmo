@@ -16,7 +16,7 @@
 
 ```
 git clone https://github.com/blinovapolina/oop_itmo.git
-cd lab2
+cd lab1
 ```
 
 Установите зависимости и билд:

@@ -1,0 +1,26 @@
+[
+    {
+      "id": 1,
+      "name": "Программирование",
+      "description": "Изучение языка C#",
+      "credits": 4,
+      "platform": "Zoom",
+      "meetingLink": "https://zoom.com/csharp-course"
+    },
+    {
+      "id": 2,
+      "name": "UX/UI дизайн",
+      "description": "Основы проектирования пользовательских интерфейсов",
+      "credits": 4,
+      "platform": "Zoom",
+      "meetingLink": "https://zoom.us/ux-ui-design"
+    },
+    {
+      "id": 3,
+      "name": "Информатика",
+      "description": "Основы информатики и компьютерных наук",
+      "credits": 4,
+      "platform": "Zoom",
+      "meetingLink": "https://zoom.us/informatics"
+    }
+  ]

@@ -1,0 +1,30 @@
+[
+    {
+        "courseId": 1,
+        "studentIds": [1, 2, 3]
+    },
+    {
+        "courseId": 2,
+        "studentIds": [1, 2, 4]
+    },
+    {
+        "courseId": 3,
+        "studentIds": [3, 4, 5]
+    },
+    {
+        "courseId": 4,
+        "studentIds": [1, 3, 5]
+    },
+    {
+        "courseId": 5,
+        "studentIds": [2, 4]
+    },
+    {
+        "courseId": 6,
+        "studentIds": [1, 2, 3, 4, 5]
+    },
+    {
+        "courseId": 7,
+        "studentIds": [1, 3, 4]
+    }
+]

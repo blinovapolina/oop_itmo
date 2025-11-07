@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "firstName": "Иван",
+    "lastName": "Иванов",
+    "email": "ivan.ivanov@university.com",
+    "department": "Компьютерные науки"
+  },
+  {
+    "id": 2,
+    "firstName": "Мария",
+    "lastName": "Сидорова",
+    "email": "msidorova@university.com",
+    "department": "Компьютерные науки"
+  },
+  {
+    "id": 3,
+    "firstName": "Алексей",
+    "lastName": "Козлов",
+    "email": "a.kozlov@university.com",
+    "department": "Компьютерные науки"
+  },
+  {
+    "id": 4,
+    "firstName": "Александра",
+    "lastName": "Козлова",
+    "email": "kozlovasasha@university.com",
+    "department": "Математика"
+  },
+  {
+    "id": 5,
+    "firstName": "Михаил",
+    "lastName": "Кузнецов",
+    "email": "kuznetsov@university.com",
+    "department": "Компьютерные науки"
+  },
+  {
+    "id": 6,
+    "firstName": "Владислав",
+    "lastName": "Тетерев",
+    "email": "teterev_vlad@university.com",
+    "department": "Физика"
+  }
+]

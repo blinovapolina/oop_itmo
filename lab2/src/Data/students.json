@@ -1,0 +1,37 @@
+[
+    {
+      "id": 1,
+      "firstName": "Алексей",
+      "lastName": "Иванов",
+      "email": "a.ivanov@student.com",
+      "group": "К3239"
+    },
+    {
+      "id": 2,
+      "firstName": "Елена",
+      "lastName": "Кузнецова", 
+      "email": "e.kuznetsova@student.com",
+      "group": "К3240"
+    },
+    {
+      "id": 3,
+      "firstName": "Дмитрий",
+      "lastName": "Смирнов",
+      "email": "d.smirnov@student.com",
+      "group": "К3239"
+    },
+    {
+      "id": 4,
+      "firstName": "Ольга",
+      "lastName": "Попова",
+      "email": "o.popova@student.com",
+      "group": "К3241"
+    },
+    {
+      "id": 5,
+      "firstName": "Сергей",
+      "lastName": "Васильев",
+      "email": "s.vasilev@student.com",
+      "group": "К3240"
+    }
+  ]

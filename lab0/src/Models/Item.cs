@@ -1,4 +1,4 @@
-namespace Lab1.Models
+namespace Lab0.Models
 
 {
     public class Item

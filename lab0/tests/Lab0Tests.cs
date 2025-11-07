@@ -1,10 +1,10 @@
 ﻿using Xunit;
-using Lab1.Core;
-using Lab1.Models;
+using Lab0.Core;
+using Lab0.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Lab1.Tests
+namespace Lab0.Tests
 {
     public class VendingMachineAndAdminTests
     {

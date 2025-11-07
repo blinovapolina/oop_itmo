@@ -1,4 +1,4 @@
-﻿using Lab1.Core;
+﻿using Lab0.Core;
 
 class Program
 {

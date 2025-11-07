@@ -1,9 +1,9 @@
 using System.Text.Json;
 using System.Text.Encodings.Web;
-using Lab1.Models;
+using Lab0.Models;
 
 
-namespace Lab1.Core
+namespace Lab0.Core
 {
     public static class Utils
     {

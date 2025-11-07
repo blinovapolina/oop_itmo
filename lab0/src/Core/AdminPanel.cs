@@ -1,7 +1,7 @@
-using Lab1.Models;
+using Lab0.Models;
 using DotNetEnv;
 
-namespace Lab1.Core
+namespace Lab0.Core
 {
     public class AdminPanel
     {

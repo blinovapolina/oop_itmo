@@ -9,7 +9,7 @@
 
 ## Структура проекта
 ```
-Lab1/
+lab1/
 ├── src
 │ ├── Program.cs
 │ ├── Lab1.csproj
@@ -35,7 +35,7 @@ Lab1/
 
 ```
 git clone https://github.com/blinovapolina/oop_itmo.git
-cd Lab1
+cd lab1
 ```
 
 Установите зависимости и билд:

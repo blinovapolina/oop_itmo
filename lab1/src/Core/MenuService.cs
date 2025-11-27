@@ -347,52 +347,58 @@ namespace UniversitySystem.Core
         {
             if (string.IsNullOrEmpty(choice)) return;
 
-            switch (choice)
+            if (choice == "1")
             {
-                case "1":
-                    Console.Clear();
-                    AddCourse();
-                    WaitForContinue();
-                    break;
-                case "2":
-                    Console.Clear();
-                    RemoveCourse();
-                    WaitForContinue();
-                    break;
-                case "3":
-                    Console.Clear();
-                    AddTeacher();
-                    WaitForContinue();
-                    break;
-                case "4":
-                    Console.Clear();
-                    AddStudent();
-                    WaitForContinue();
-                    break;
-                case "5":
-                    Console.Clear();
-                    AssignTeacherToCourse();
-                    WaitForContinue();
-                    break;
-                case "6":
-                    Console.Clear();
-                    AddStudentToCourse();
-                    WaitForContinue();
-                    break;
-                case "7":
-                    Console.Clear();
-                    RemoveStudentFromCourse();
-                    WaitForContinue();
-                    break;
-                case "8":
-                    Console.Clear();
-                    ShowCourseDetails();
-                    WaitForContinue();
-                    break;
-                default:
-                    Console.WriteLine("Неверный выбор!");
-                    WaitForContinue();
-                    break;
+                Console.Clear();
+                AddCourse();
+                WaitForContinue();
+            }
+            else if (choice == "2")
+            {
+                Console.Clear();
+                RemoveCourse();
+                WaitForContinue();
+            }
+            else if (choice == "3")
+            {
+                Console.Clear();
+                AddTeacher();
+                WaitForContinue();
+            }
+            else if (choice == "4")
+            {
+                Console.Clear();
+                AddStudent();
+                WaitForContinue();
+            }
+            else if (choice == "5")
+            {
+                Console.Clear();
+                AssignTeacherToCourse();
+                WaitForContinue();
+            }
+            else if (choice == "6")
+            {
+                Console.Clear();
+                AddStudentToCourse();
+                WaitForContinue();
+            }
+            else if (choice == "7")
+            {
+                Console.Clear();
+                RemoveStudentFromCourse();
+                WaitForContinue();
+            }
+            else if (choice == "8")
+            {
+                Console.Clear();
+                ShowCourseDetails();
+                WaitForContinue();
+            }
+            else
+            {
+                Console.WriteLine("Неверный выбор!");
+                WaitForContinue();
             }
         }
 

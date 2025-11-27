@@ -1,0 +1,50 @@
+{
+    "weapons": [
+      {
+        "id": "TEST_1",
+        "name": "Тестовый меч",
+        "weaponType": "Sword",
+        "rarity": "Common",
+        "baseDamage": 10,
+        "price": 100
+      },
+      {
+        "id": "TEST_2",
+        "name": "Тестовый лук",
+        "weaponType": "Bow",
+        "rarity": "Uncommon",
+        "baseDamage": 15,
+        "price": 150
+      }
+    ],
+    "armors": [
+      {
+        "id": "TEST_1",
+        "name": "Тестовый шлем",
+        "armorType": "Helmet",
+        "rarity": "Common",
+        "defense": 5,
+        "price": 50
+      }
+    ],
+    "potions": [
+      {
+        "id": "TEST_1",
+        "name": "Тестовое зелье",
+        "rarity": "Common",
+        "healAmount": 20,
+        "price": 25,
+        "maxStack": 5
+      }
+    ],
+    "questItems": [
+      {
+        "id": "TEST_1",
+        "name": "Тестовый ключ",
+        "questType": "Key",
+        "rarity": "Common",
+        "effectDescription": "Тестовый эффект",
+        "price": 75
+      }
+    ]
+  }

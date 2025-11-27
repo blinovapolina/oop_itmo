@@ -1,7 +1,7 @@
 using UniversitySystem.Models;
 using UniversitySystem.Interface;
 
-namespace UniversitySystem.Services
+namespace UniversitySystem.Core
 {
     public class UniManager : InterfaceUniManager
     {
@@ -57,7 +57,7 @@ namespace UniversitySystem.Services
         public void AssignTeacherToCourse(int courseId, Teacher teacher)
         {
             var course = GetCourse(courseId);
-            
+
             if (course == null)
             {
                 throw new ArgumentException($"Курс с ID {courseId}, к сожалению, не найден");
@@ -106,7 +106,7 @@ namespace UniversitySystem.Services
                 }
 
                 course.AddStudent(student);
-                return; 
+                return;
             }
             throw new ArgumentException($"Курс с ID {courseId}, к сожалению, не найден");
         }

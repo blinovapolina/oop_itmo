@@ -1,5 +1,5 @@
 using UniversitySystem.Models;
-using UniversitySystem.Services;
+using UniversitySystem.Core;
 using Xunit;
 
 namespace UniversitySystem.Tests

@@ -1,5 +1,6 @@
 using UniversitySystem.Models;
 using UniversitySystem.Services;
+using UniversitySystem.Core;
 using UniversitySystem.Interface;
 using System.Text.Json;
 
@@ -12,7 +13,7 @@ namespace UniversitySystem
             try
             {
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
-                
+
                 InterfaceUniManager uniManager = new UniManager();
                 DataLoader.InitializeData(uniManager);
 

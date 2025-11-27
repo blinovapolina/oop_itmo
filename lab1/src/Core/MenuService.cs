@@ -1,7 +1,7 @@
 using UniversitySystem.Models;
 using UniversitySystem.Interface;
 
-namespace UniversitySystem.Services
+namespace UniversitySystem.Core
 {
     public class MenuService
     {
@@ -31,7 +31,7 @@ namespace UniversitySystem.Services
             Console.WriteLine("1. 📊 Общая статистика");
             Console.WriteLine("2. 📚 Список всех курсов");
             Console.WriteLine("3. 👨‍🏫 Преподаватели и их курсы");
-            Console.WriteLine("4. 👥 Список всех студентов"); 
+            Console.WriteLine("4. 👥 Список всех студентов");
             Console.WriteLine("5. 🤓 Студенты по курсам");
             Console.WriteLine("6. 📝 Управление данными");
             Console.WriteLine("0. ❌ Выход");
@@ -42,7 +42,7 @@ namespace UniversitySystem.Services
         private bool ProcessMenuChoice(string? choice)
         {
             if (string.IsNullOrEmpty(choice)) return true;
-            
+
             switch (choice)
             {
                 case "1":
@@ -261,7 +261,7 @@ namespace UniversitySystem.Services
                 foreach (var student in allStudents.OrderBy(person => person.LastName).ThenBy(person => person.FirstName))
                 {
                     var studentCourses = _uniManager.GetAllCourses().Count(c => c.Students.Any(s => s.Id == student.Id));
-                    
+
                     Console.WriteLine($"👤 {student.FirstName} {student.LastName}");
                     Console.WriteLine($"   ID: {student.Id}");
                     Console.WriteLine($"   Email: {student.Email}");
@@ -346,7 +346,7 @@ namespace UniversitySystem.Services
         private void ProcessDataManagementChoice(string? choice)
         {
             if (string.IsNullOrEmpty(choice)) return;
-            
+
             switch (choice)
             {
                 case "1":
@@ -645,7 +645,7 @@ namespace UniversitySystem.Services
             {
                 var (typeIcon, capacityInfo) = GetCourseDisplayInfo(courseItem);
 
-                string teacherInfo = courseItem.Teacher != null 
+                string teacherInfo = courseItem.Teacher != null
                     ? $" (Преподаватель: {courseItem.Teacher.FirstName} {courseItem.Teacher.LastName})"
                     : " (Преподаватель не назначен)";
                 Console.WriteLine($"  {courseItem.Id}. {typeIcon} {courseItem.Name}{teacherInfo}");
@@ -775,7 +775,7 @@ namespace UniversitySystem.Services
                 return;
             }
 
-         
+
             if (enrolledStudentIds.Contains(studentId))
             {
                 Console.WriteLine($"Студент {selectedStudent.FirstName} {selectedStudent.LastName} уже записан на курс '{selectedCourse.Name}'!");

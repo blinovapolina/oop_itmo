@@ -100,7 +100,7 @@ namespace UniversitySystem.Services
             {
                 var teacher = manager.GetAllTeachers().Find(t => t.Id == assignment.TeacherId);
                 var course = manager.GetAllCourses().Find(c => c.Id == assignment.CourseId);
-                
+
                 if (teacher != null && course != null)
                 {
                     try
@@ -150,7 +150,7 @@ namespace UniversitySystem.Services
                     if (student != null)
                     {
                         try
-                        {   
+                        {
                             manager.AddStudentToCourse(enrollment.CourseId, student);
                             successEnrollments++;
                             var updatedCourse = manager.GetCourse(enrollment.CourseId);

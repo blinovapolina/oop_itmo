@@ -1,0 +1,98 @@
+{
+    "weapons": [
+      {
+        "id": "1",
+        "name": "Меч богатыря",
+        "weaponType": "Sword",
+        "rarity": "Uncommon",
+        "baseDamage": 15,
+        "price": 150
+      },
+      {
+        "id": "2",
+        "name": "Лук охотника",
+        "weaponType": "Bow",
+        "rarity": "Common",
+        "baseDamage": 12,
+        "price": 100
+      },
+      {
+        "id": "3",
+        "name": "Эпический клинок",
+        "weaponType": "Sword",
+        "rarity": "Epic",
+        "baseDamage": 25,
+        "price": 500
+      }
+    ],
+    "armors": [
+      {
+        "id": "1",
+        "name": "Железный шлем",
+        "armorType": "Helmet",
+        "rarity": "Common",
+        "defense": 5,
+        "price": 80
+      },
+      {
+        "id": "2",
+        "name": "Кожаный доспех",
+        "armorType": "Chest",
+        "rarity": "Common",
+        "defense": 8,
+        "price": 120
+      },
+      {
+        "id": "3",
+        "name": "Дракония броня",
+        "armorType": "Chest",
+        "rarity": "Rare",
+        "defense": 15,
+        "price": 300
+      }
+    ],
+    "potions": [
+      {
+        "id": "1",
+        "name": "Зелье здоровья",
+        "rarity": "Common",
+        "healAmount": 25,
+        "price": 30,
+        "maxStack": 5
+      },
+      {
+        "id": "2",
+        "name": "Зелье удачи",
+        "rarity": "Uncommon",
+        "healAmount": 30,
+        "price": 60,
+        "maxStack": 3
+      },
+      {
+        "id": "3",
+        "name": "Эликсир жизни",
+        "rarity": "Rare",
+        "healAmount": 100,
+        "price": 150,
+        "maxStack": 1
+      }
+    ],
+    "questItems": [
+      {
+        "id": "1",
+        "name": "Древний ключ",
+        "questType": "Key",
+        "rarity": "Common",
+        "effectDescription": "Открывает древние замки",
+        "price": 50
+      },
+      {
+        "id": "2",
+        "name": "Магическая карта",
+        "questType": "Document",
+        "rarity": "Rare",
+        "effectDescription": "Указывает нужную дорогу",
+        "price": 200
+      }
+    ]
+  }

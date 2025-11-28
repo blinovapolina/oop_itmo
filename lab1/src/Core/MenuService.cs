@@ -485,7 +485,7 @@ namespace UniversitySystem.Core
                 }
 
                 _uniManager.AddCourse(course);
-                Console.WriteLine("✅ Курс успешно добавлен!");
+                Console.WriteLine("Курс успешно добавлен!");
             }
             catch (Exception ex)
             {

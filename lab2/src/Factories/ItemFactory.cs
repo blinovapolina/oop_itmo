@@ -52,7 +52,7 @@ namespace InventorySystem.Factories
             var maxStack = CalculatePotionStackSize(rarity);
 
             var builder = new ItemBuilder();
-            builder.SetId($"{_potionCount}");
+            builder.SetId($"{++_potionCount}");
             builder.SetName(name);
             builder.SetRarity(rarity);
             builder.SetHealAmount(healAmount);

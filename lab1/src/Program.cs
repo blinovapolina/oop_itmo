@@ -10,8 +10,6 @@ namespace UniversitySystem
         {
             try
             {
-                Console.OutputEncoding = System.Text.Encoding.UTF8;
-
                 InterfaceUniManager uniManager = new UniManager();
                 DataLoader.InitializeData(uniManager);
 

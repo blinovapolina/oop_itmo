@@ -28,13 +28,13 @@ namespace UniversitySystem.Core
         {
             Console.WriteLine("СИСТЕМА УПРАВЛЕНИЯ КУРСАМИ УНИВЕРСИТЕТА");
             Console.WriteLine("---------------------------------------");
-            Console.WriteLine("1. 📊 Общая статистика");
-            Console.WriteLine("2. 📚 Список всех курсов");
-            Console.WriteLine("3. 👨‍🏫 Преподаватели и их курсы");
-            Console.WriteLine("4. 👥 Список всех студентов");
-            Console.WriteLine("5. 🤓 Студенты по курсам");
-            Console.WriteLine("6. 📝 Управление данными");
-            Console.WriteLine("0. ❌ Выход");
+            Console.WriteLine("1. Общая статистика");
+            Console.WriteLine("2. Список всех курсов");
+            Console.WriteLine("3. Преподаватели и их курсы");
+            Console.WriteLine("4. Список всех студентов");
+            Console.WriteLine("5. Студенты по курсам");
+            Console.WriteLine("6. Управление данными");
+            Console.WriteLine("0. Выход");
             Console.WriteLine("---------------------------------------");
             Console.Write("Выберите опцию: ");
         }
@@ -43,35 +43,42 @@ namespace UniversitySystem.Core
         {
             if (string.IsNullOrEmpty(choice)) return true;
 
-            switch (choice)
+            if (choice == "1")
             {
-                case "1":
-                    ShowStatistics();
-                    break;
-                case "2":
-                    ShowAllCourses();
-                    break;
-                case "3":
-                    ShowTeachersAndCourses();
-                    break;
-                case "4":
-                    ShowAllStudents();
-                    break;
-                case "5":
-                    ShowStudentsByCourse();
-                    break;
-                case "6":
-                    ShowDataManagementMenu();
-                    break;
-                case "0":
-                    Console.WriteLine("До свидания!");
-                    Console.Clear();
-                    return false;
-                default:
-                    Console.WriteLine("Неверный выбор!");
-                    WaitForContinue();
-                    break;
+                ShowStatistics();
             }
+            else if (choice == "2")
+            {
+                ShowAllCourses();
+            }
+            else if (choice == "3")
+            {
+                ShowTeachersAndCourses();
+            }
+            else if (choice == "4")
+            {
+                ShowAllStudents();
+            }
+            else if (choice == "5")
+            {
+                ShowStudentsByCourse();
+            }
+            else if (choice == "6")
+            {
+                ShowDataManagementMenu();
+            }
+            else if (choice == "0")
+            {
+                Console.WriteLine("До свидания!");
+                Console.Clear();
+                return false;
+            }
+            else
+            {
+                Console.WriteLine("Неверный выбор!");
+                WaitForContinue();
+            }
+
             return true;
         }
 
@@ -119,11 +126,11 @@ namespace UniversitySystem.Core
             string typeIcon;
             if (course is OnlineCourse)
             {
-                typeIcon = "💻";
+                typeIcon = "[ОНЛАЙН]";
             }
             else
             {
-                typeIcon = "🏫";
+                typeIcon = "[ОФЛАЙН]";
             }
 
             string capacityInfo;
@@ -144,7 +151,7 @@ namespace UniversitySystem.Core
             Console.Clear();
             Console.WriteLine("СИСТЕМА УПРАВЛЕНИЯ КУРСАМИ УНИВЕРСИТЕТА");
             Console.WriteLine("---------------------------------------");
-            Console.WriteLine("📊 ОБЩАЯ СТАТИСТИКА СИСТЕМЫ");
+            Console.WriteLine("ОБЩАЯ СТАТИСТИКА СИСТЕМЫ");
             Console.WriteLine("---------------------------------------");
 
             var manager = _uniManager as UniManager;
@@ -175,7 +182,7 @@ namespace UniversitySystem.Core
 
             Console.WriteLine("СИСТЕМА УПРАВЛЕНИЯ КУРСАМИ УНИВЕРСИТЕТА");
             Console.WriteLine("---------------------------------------");
-            Console.WriteLine("📚 ВСЕ КУРСЫ");
+            Console.WriteLine("ВСЕ КУРСЫ");
             Console.WriteLine("---------------------------------------");
             Console.WriteLine($"Всего курсов: {allCourses.Count}\n");
 
@@ -215,7 +222,7 @@ namespace UniversitySystem.Core
 
             Console.WriteLine("СИСТЕМА УПРАВЛЕНИЯ КУРСАМИ УНИВЕРСИТЕТА");
             Console.WriteLine("---------------------------------------");
-            Console.WriteLine("👨‍🏫 ПРЕПОДАВАТЕЛИ И ИХ КУРСЫ");
+            Console.WriteLine("ПРЕПОДАВАТЕЛИ И ИХ КУРСЫ");
             Console.WriteLine("---------------------------------------");
             Console.WriteLine($"Всего преподавателей: {teachers.Count}\n");
 
@@ -252,7 +259,7 @@ namespace UniversitySystem.Core
 
             Console.WriteLine("СИСТЕМА УПРАВЛЕНИЯ КУРСАМИ УНИВЕРСИТЕТА");
             Console.WriteLine("---------------------------------------");
-            Console.WriteLine("👥 СПИСОК ВСЕХ СТУДЕНТОВ");
+            Console.WriteLine("СПИСОК ВСЕХ СТУДЕНТОВ");
             Console.WriteLine("---------------------------------------");
             Console.WriteLine($"Всего студентов: {allStudents.Count}\n");
 
@@ -262,7 +269,7 @@ namespace UniversitySystem.Core
                 {
                     var studentCourses = _uniManager.GetAllCourses().Count(c => c.Students.Any(s => s.Id == student.Id));
 
-                    Console.WriteLine($"👤 {student.FirstName} {student.LastName}");
+                    Console.WriteLine($"{student.FirstName} {student.LastName}");
                     Console.WriteLine($"   ID: {student.Id}");
                     Console.WriteLine($"   Email: {student.Email}");
                     Console.WriteLine($"   Группа: {student.Group}");
@@ -285,7 +292,7 @@ namespace UniversitySystem.Core
 
             Console.WriteLine("СИСТЕМА УПРАВЛЕНИЯ КУРСАМИ УНИВЕРСИТЕТА");
             Console.WriteLine("---------------------------------------");
-            Console.WriteLine("🤓 СТУДЕНТЫ ПО КУРСАМ");
+            Console.WriteLine("СТУДЕНТЫ ПО КУРСАМ");
             Console.WriteLine("---------------------------------------");
 
             foreach (var course in allCourses.OrderBy(c => c.Id))
@@ -300,7 +307,7 @@ namespace UniversitySystem.Core
                 {
                     foreach (var student in course.Students.OrderBy(s => s.LastName))
                     {
-                        Console.WriteLine($"      👤 {student.FirstName} {student.LastName}");
+                        Console.WriteLine($"      {student.FirstName} {student.LastName}");
                         Console.WriteLine($"         Email: {student.Email}");
                         Console.WriteLine($"         Группа: {student.Group}");
                     }
@@ -321,7 +328,7 @@ namespace UniversitySystem.Core
                 Console.Clear();
                 Console.WriteLine("СИСТЕМА УПРАВЛЕНИЯ КУРСАМИ УНИВЕРСИТЕТА");
                 Console.WriteLine("---------------------------------------");
-                Console.WriteLine("📝 УПРАВЛЕНИЕ ДАННЫМИ");
+                Console.WriteLine("УПРАВЛЕНИЕ ДАННЫМИ");
                 Console.WriteLine("---------------------------------------");
                 Console.WriteLine("1. Добавить курс");
                 Console.WriteLine("2. Удалить курс");
@@ -518,7 +525,7 @@ namespace UniversitySystem.Core
                         {
                             var result = _uniManager.RemoveCourse(courseId);
                             if (result)
-                                Console.WriteLine("✅ Курс успешно удален!");
+                                Console.WriteLine("Курс успешно удален!");
                             else
                                 Console.WriteLine("Не удалось удалить курс");
                         }
@@ -580,7 +587,7 @@ namespace UniversitySystem.Core
                 var teacher = new Teacher(id, firstName, lastName, email, department);
                 _uniManager.AddTeacher(teacher);
 
-                Console.WriteLine("✅ Преподаватель успешно добавлен!");
+                Console.WriteLine("Преподаватель успешно добавлен!");
             }
             catch (Exception ex)
             {
@@ -604,7 +611,7 @@ namespace UniversitySystem.Core
                 var firstName = Console.ReadLine()?.Trim() ?? "";
                 if (string.IsNullOrEmpty(firstName))
                 {
-                    Console.WriteLine("❌ Имя не может быть пустым!");
+                    Console.WriteLine("Имя не может быть пустым!");
                     return;
                 }
 
@@ -612,7 +619,7 @@ namespace UniversitySystem.Core
                 var lastName = Console.ReadLine()?.Trim() ?? "";
                 if (string.IsNullOrEmpty(lastName))
                 {
-                    Console.WriteLine("❌ Фамилия не может быть пустой!");
+                    Console.WriteLine("Фамилия не может быть пустой!");
                     return;
                 }
 
@@ -623,18 +630,18 @@ namespace UniversitySystem.Core
                 var group = Console.ReadLine()?.Trim() ?? "";
                 if (string.IsNullOrEmpty(group))
                 {
-                    Console.WriteLine("❌ Группа не может быть пустой!");
+                    Console.WriteLine("Группа не может быть пустой!");
                     return;
                 }
 
                 var student = new Student(id, firstName, lastName, email, group);
                 _uniManager.AddStudent(student);
 
-                Console.WriteLine("✅ Студент успешно добавлен!");
+                Console.WriteLine("Студент успешно добавлен!");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Ошибка: {ex.Message}");
+                Console.WriteLine($"Ошибка: {ex.Message}");
             }
         }
 
@@ -708,7 +715,7 @@ namespace UniversitySystem.Core
             try
             {
                 _uniManager.AssignTeacherToCourse(courseId, selectedTeacher);
-                Console.WriteLine($"✅ Преподаватель {selectedTeacher.FirstName} {selectedTeacher.LastName} назначен на курс '{selectedCourse.Name}'!");
+                Console.WriteLine($"Преподаватель {selectedTeacher.FirstName} {selectedTeacher.LastName} назначен на курс '{selectedCourse.Name}'!");
             }
             catch (Exception ex)
             {
@@ -797,7 +804,7 @@ namespace UniversitySystem.Core
             try
             {
                 _uniManager.AddStudentToCourse(selectedCourseId, selectedStudent);
-                Console.WriteLine($"✅ Студент {selectedStudent.FirstName} {selectedStudent.LastName} записан на курс '{selectedCourse.Name}'!");
+                Console.WriteLine($"Студент {selectedStudent.FirstName} {selectedStudent.LastName} записан на курс '{selectedCourse.Name}'!");
             }
             catch (Exception ex)
             {
@@ -868,7 +875,7 @@ namespace UniversitySystem.Core
                         try
                         {
                             _uniManager.RemoveStudentFromCourse(courseId, student);
-                            Console.WriteLine($"✅ Студент {student.FirstName} {student.LastName} успешно удален с курса '{course.Name}'!");
+                            Console.WriteLine($"Студент {student.FirstName} {student.LastName} успешно удален с курса '{course.Name}'!");
                         }
                         catch (Exception ex)
                         {
@@ -887,7 +894,7 @@ namespace UniversitySystem.Core
             }
             else
             {
-                Console.WriteLine("❌ Неверный формат ID курса");
+                Console.WriteLine("Неверный формат ID курса");
             }
         }
 

@@ -23,7 +23,7 @@ namespace DeliveryOrderManagementSystem.Models
             Status = status;
         }
 
-        public decimal CalculateSubtotal()
+        public decimal CalculateSumTotal()
         {
             return Items.Sum(item => item.GetTotalPrice());
         }

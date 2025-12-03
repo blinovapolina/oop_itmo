@@ -2,13 +2,13 @@ namespace DeliverySystem.Models
 {
     public class OrderItem
     {
-        public MenuItem MenuItem { get; private set; }
+        public Dish Dish { get; private set; }
         public int Quantity { get; private set; }
         public string SpecialInstructions { get; private set; }
 
-        public OrderItem(MenuItem menuItem, int quantity, string specialInstructions = "")
+        public OrderItem(Dish dish, int quantity, string specialInstructions = "")
         {
-            MenuItem = menuItem;
+            Dish = dish;
             Quantity = quantity;
             SpecialInstructions = specialInstructions;
         }

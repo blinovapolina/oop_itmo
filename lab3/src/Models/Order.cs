@@ -82,7 +82,7 @@ namespace DeliverySystem.Models
 
         public string GetStatus() => State.GetStatus();
 
-        public decimal CalculateSumTotal()
+        public decimal CalculateSubtotal()
         {
             return Items.Sum(item => item.GetTotalPrice());
         }

@@ -30,11 +30,6 @@ namespace DeliverySystem.Models
 
         public bool HasFreeDelivery()
         {
-            return Category == CustomerCategory.SuperVIP;
-        }
-
-        public bool HasPriorityDelivery()
-        {
             return Category == CustomerCategory.VIP || Category == CustomerCategory.SuperVIP;
         }
     }

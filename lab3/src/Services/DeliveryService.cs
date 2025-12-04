@@ -15,7 +15,7 @@ namespace DeliveryOrderManagementSystem.Services
 
         public string GetServiceName() => "DeliveryService";
 
-        public void OnOrderCreated(Order order)
+        public void HandleOrderCreated(Order order)
         {
             Console.WriteLine($"Служба доставки: Поиск курьера для заказа номер {order.Id}");
 
@@ -30,7 +30,7 @@ namespace DeliveryOrderManagementSystem.Services
             }
         }
 
-        public void OnOrderStatusChanged(Order order, string oldStatus, string newStatus)
+        public void HandleOrderStatusChanged(Order order, string oldStatus, string newStatus)
         {
             if (newStatus == "В доставке")
             {

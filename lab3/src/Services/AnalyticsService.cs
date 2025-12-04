@@ -15,7 +15,7 @@ namespace DeliveryOrderManagementSystem.Services
         public AnalyticsService(IOrderMediator mediator)
         {
             Mediator = mediator;
-            mediator.RegisterService("NotificationService", this);
+            mediator.RegisterService("AnalyticsService", this);
 
             TotalOrdersProcessed = 0;
             TotalRevenue = 0m;

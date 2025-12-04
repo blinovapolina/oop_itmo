@@ -14,9 +14,12 @@ namespace DeliverySystem.Models
         public bool IsFastDelivery { get; private set; }
         public string SpecialPreferences { get; private set; }
 
-        public Order(Customer customer, List<OrderItem> items, string deliveryAddress,
+        private IOrderMediator Mediator { get; }
+
+        public Order(int id, Customer customer, List<OrderItem> items, string deliveryAddress, IOrderMediator mediator,
                     bool isFastDelivery = false, string specialPreferences = "")
         {
+            Id = id;
             Customer = customer;
             Items = items ?? new List<OrderItem>();
             DeliveryAddress = deliveryAddress;
@@ -24,12 +27,18 @@ namespace DeliverySystem.Models
             SpecialPreferences = specialPreferences;
             OrderTime = DateTime.Now;
             State = new PendingState();
+
+            Mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            Mediator.NotifyOrderCreated(this);
         }
 
         private void ChangeState(IOrderState state)
         {
+            var oldState = State;
             State = state;
             State.ProcessOrder(this);
+
+            Mediator.NotifyOrderStateChanged(this, oldState, state);
         }
 
         public void Approve()

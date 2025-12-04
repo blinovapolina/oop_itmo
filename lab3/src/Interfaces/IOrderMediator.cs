@@ -1,11 +1,9 @@
-using DeliverySystem.Models;
-
-namespace DeliverySystem.Interfaces
+namespace DeliveryOrderManagementSystem.Interfaces
 {
     public interface IOrderMediator
     {
-        void NotifyOrderCreated(Order order);
-        void NotifyOrderStatusChanged(Order order, string oldStatus, string newStatus);
         void RegisterService(string serviceName, IOrderServiceComponent component);
+        void NotifyOrderCreated(Order order);
+        void NotifyOrderStateChanged(Order order, IOrderState oldState, IOrderState newState);
     }
 }

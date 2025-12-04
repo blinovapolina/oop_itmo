@@ -96,6 +96,7 @@ namespace DeliverySystem.Builders
 
         private bool IsValidPhone(string phone)
         {
+
             var digitsOnly = new string(phone.Where(char.IsDigit).ToArray());
             return digitsOnly.Length >= 10 && digitsOnly.Length <= 15;
         }

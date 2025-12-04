@@ -32,62 +32,20 @@ namespace DeliverySystem.Models
             Mediator.NotifyOrderCreated(this);
         }
 
-        private void ChangeState(IOrderState state)
+        public void ChangeState(IOrderState state)
         {
             var oldState = State;
             State = state;
-            State.ProcessOrder(this);
 
             Mediator.NotifyOrderStateChanged(this, oldState, state);
         }
 
-        public void Approve()
-        {
-            if (State.GetStatus() != "Ожидает подтверждения")
-                throw new InvalidOperationException("Можно подтвердить только ожидающий заказ");
-
-            ChangeState(new PreparingState());
-        }
-
-        public void CompletePreparation()
-        {
-            if (State.GetStatus() != "Готовится")
-                throw new InvalidOperationException("Заказ должен быть в состоянии приготовления");
-
-            ChangeState(new ReadyForDeliveryState());
-        }
-
-        public void AssignCourier()
-        {
-            if (State.GetStatus() != "Готов к доставке")
-                throw new InvalidOperationException("Заказ должен быть готов к доставке");
-
-            ChangeState(new CourierAssignedState());
-        }
-
-        public void StartDelivery()
-        {
-            if (State.GetStatus() != "Курьер назначен")
-                throw new InvalidOperationException("Сначала назначьте курьера");
-
-            ChangeState(new InDeliveryState());
-        }
-
-        public void CompleteDelivery()
-        {
-            if (State.GetStatus() != "В доставке")
-                throw new InvalidOperationException("Можно завершить только доставляемый заказ");
-
-            ChangeState(new CompletedState());
-        }
-
-        public void Cancel()
-        {
-            if (State.GetStatus() == "Выполнен" || State.GetStatus() == "В доставке" || State.GetStatus() == "Курьер назначен")
-                throw new InvalidOperationException($"Этот заказ уже нельзя отменить: он находится в статусе '{State.GetStatus()}')");
-
-            ChangeState(new CancelledState());
-        }
+        public void Approve() => State.Approve(this);
+        public void Cancel(string reason = "") => State.Cancel(this, reason);
+        public void CompletePreparation() => State.CompletePreparation(this);
+        public void AssignCourier() => State.AssignCourier(this);
+        public void StartDelivery() => State.StartDelivery(this);
+        public void CompleteDelivery() => State.CompleteDelivery(this);
 
         public string GetStatus() => State.GetStatus();
 

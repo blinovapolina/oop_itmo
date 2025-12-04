@@ -1,3 +1,6 @@
+using DeliverySystem.Builders;
+using DeliverySystem.Builders.Interfaces;
+using DeliverySystem.Enums;
 using DeliverySystem.Models;
 using System;
 using System.Collections.Generic;
@@ -9,6 +12,14 @@ namespace DeliverySystem.Core
     public class DataLoader
     {
         private string _dataDirectory = "Data";
+        private ICustomerBuilder _customerBuilder;
+        private IDishBuilder _dishBuilder;
+
+        public DataLoader(ICustomerBuilder customerBuilder, IDishBuilder dishBuilder)
+        {
+            _customerBuilder = customerBuilder ?? new CustomerBuilder();
+            _dishBuilder = dishBuilder ?? new DishBuilder();
+        }
 
         public List<Customer> LoadCustomers()
         {
@@ -25,13 +36,14 @@ namespace DeliverySystem.Core
                 if (parts.Length >= 4)
                 {
                     var category = Enum.Parse<Enums.CustomerCategory>(parts[3]);
-                    var customer = new Customer(
-                        id: customers.Count + 1,
-                        name: parts[0],
-                        phone: parts[1],
-                        address: parts[2],
-                        category: category
-                    );
+
+                    var customer = _customerBuilder
+                        .SetName(parts[0])
+                        .SetPhone(parts[1])
+                        .SetAddress(parts[2])
+                        .SetCategory(category)
+                        .Build();
+
                     customers.Add(customer);
                 }
             }
@@ -57,13 +69,13 @@ namespace DeliverySystem.Core
                     var prepTime = int.Parse(parts[3]);
                     var description = parts.Length > 4 ? parts[4] : "";
 
-                    var dish = new Dish(
-                        id: menu.Count + 1,
-                        name: parts[0],
-                        description: description,
-                        price: price,
-                        preparationTime: prepTime
-                    );
+                    var dish = _dishBuilder
+                        .SetName(parts[0])
+                        .SetDescription(description)
+                        .SetPrice(price)
+                        .SetPreparationTime(prepTime)
+                        .Build();
+
                     menu.Add(dish);
                 }
             }

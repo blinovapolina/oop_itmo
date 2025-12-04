@@ -33,9 +33,9 @@ namespace DeliverySystem.Services
             }
             else
             {
-                Console.WriteLine($"Сервис уведомлений: Заказ номер {order.Id} изменил статус на {newStatus}");
+                Console.WriteLine($"Сервис уведомлений: Заказ номер {order.Id} изменил статус на {newStatus.GetStatus()}");
                 SendSMS(order.Customer.Phone,
-                    $"Статус заказа номер {order.Id}: {oldStatus} -> {newStatus}");
+                    $"Статус заказа номер {order.Id}: {oldStatus.GetStatus()} -> {newStatus.GetStatus()}");
             }
         }
 

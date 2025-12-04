@@ -11,6 +11,7 @@ namespace DeliverySystem.Builders
         private string _phone;
         private string _address;
         private CustomerCategory _category = CustomerCategory.Regular;
+        private static int _lastCustomerId = 0;
 
         public ICustomerBuilder SetId(int id)
         {
@@ -83,13 +84,16 @@ namespace DeliverySystem.Builders
             if (!CanBuild())
                 throw new InvalidOperationException("Невозможно создать клиента. Проверьте обязательные поля.");
 
+            if (_id <= 0)
+            {
+                _id = ++_lastCustomerId;
+            }
             return new Customer(_id, _name, _phone, _address, _category);
         }
 
         public bool CanBuild()
         {
-            return _id > 0 &&
-                   !string.IsNullOrWhiteSpace(_name) &&
+            return !string.IsNullOrWhiteSpace(_name) &&
                    !string.IsNullOrWhiteSpace(_phone) &&
                    !string.IsNullOrWhiteSpace(_address);
         }

@@ -14,10 +14,18 @@ namespace DeliverySystem.Core
     {
         private DeliverySystemApp _system;
         private DataLoader _dataLoader;
+        private IOrderMediator _mediator;
+        private ICustomerBuilder _customerBuilder;
+        private IDishBuilder _dishBuilder;
 
         public DeliverySystemDemo()
         {
-            _dataLoader = new DataLoader();
+            // Создаём билдеры один раз
+            _customerBuilder = new CustomerBuilder();
+            _dishBuilder = new DishBuilder();
+
+            // Передаём их в DataLoader
+            _dataLoader = new DataLoader(_customerBuilder, _dishBuilder);
         }
 
         public void Run()
@@ -32,11 +40,10 @@ namespace DeliverySystem.Core
 
         private void InitializeSystem()
         {
-            var mediator = new OrderProcessingMediator();
-            var customerBuilder = new CustomerBuilder();
-            var dishBuilder = new DishBuilder();
+            _mediator = new OrderProcessingMediator();
 
-            _system = new DeliverySystemApp(mediator, customerBuilder, dishBuilder);
+            // Используем уже созданные билдеры
+            _system = new DeliverySystemApp(_mediator, _customerBuilder, _dishBuilder);
         }
 
         private void LoadData()
@@ -77,18 +84,29 @@ namespace DeliverySystem.Core
             // 1. Создание заказов
             Console.WriteLine("1) СОЗДАНИЕ И ОБРАБОТКА ЗАКАЗОВ");
 
-            var order1 = _system.CreateOrder(firstCustomer.Id, firstCustomer.Address,
-                isFastDelivery: false, specialPreferences: "Без перца");
+            // Заказ 1: Используем Builder напрямую
+            var order1 = new OrderBuilder()
+                .SetCustomer(firstCustomer)
+                .SetDeliveryAddress(firstCustomer.Address)
+                .SetFastDelivery(false)
+                .SetSpecialPreferences("Без перца")
+                .SetMediator(_mediator)
+                .AddDish(pizza, 1, "Без перца")
+                .Build();
+            _system.Orders.Add(order1);
 
-            var items = new List<OrderItem>
-            {
-                new OrderItem(pizza, 2, "Острая"),
-                new OrderItem(cola, 3)
-            };
+            // Заказ 2: Используем Builder с разными блюдами
+            var order2 = new OrderBuilder()
+                .SetCustomer(firstCustomer)
+                .SetDeliveryAddress(firstCustomer.Address)
+                .SetFastDelivery(true)
+                .SetMediator(_mediator)
+                .AddDish(pizza, 2, "Острая")
+                .AddDish(cola, 3)
+                .Build();
+            _system.Orders.Add(order2);
 
-            var order2 = _system.CreateOrderWithItems(firstCustomer.Id, firstCustomer.Address,
-                items, isFastDelivery: true);
-
+            // Обработка заказа 1
             _system.ApproveOrder(order1.Id);
             _system.CompletePreparation(order1.Id);
             _system.AssignCourier(order1.Id);
@@ -97,7 +115,14 @@ namespace DeliverySystem.Core
 
             Console.WriteLine("\n2) ОТМЕНА ЗАКАЗА");
 
-            var order3 = _system.CreateOrder(firstCustomer.Id, firstCustomer.Address);
+            // Заказ 3: Используем Builder для отмены
+            var order3 = new OrderBuilder()
+                .SetCustomer(firstCustomer)
+                .SetDeliveryAddress(firstCustomer.Address)
+                .SetMediator(_mediator)
+                .AddDish(pizza, 1)
+                .Build();
+            _system.Orders.Add(order3);
             _system.CancelOrder(order3.Id, "Передумал клиент");
 
             Console.WriteLine("\n3) РАСЧЕТ СТОИМОСТИ");
@@ -105,12 +130,18 @@ namespace DeliverySystem.Core
             var total1 = _system.CalculateOrderTotal(order1.Id);
             var total2 = _system.CalculateOrderTotal(order2.Id);
 
+            Console.WriteLine($"Стоимость заказа 1: {total1:F2} рублей");
+            Console.WriteLine($"Стоимость заказа 2: {total2:F2} рублей");
+
             Console.WriteLine("\n4) ПРОВЕРКА СКИДОК И БЕСПЛАТНОЙ ДОСТАВКИ");
 
             foreach (var customer in _system.Customers)
             {
                 var discount = _system.GetCustomerDiscountPercentage(customer.Id) * 100;
                 var freeDelivery = _system.CanHaveFreeDelivery(customer.Id);
+
+                Console.WriteLine($"Клиент {customer.Name}: скидка {discount:F2}%, " +
+                     $"бесплатная доставка: {(freeDelivery ? "Да" : "Нет")}");
             }
         }
 

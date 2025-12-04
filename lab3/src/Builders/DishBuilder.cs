@@ -11,6 +11,8 @@ namespace DeliverySystem.Builders
         private decimal _price;
         private int _preparationTime;
 
+        private static int _lastDishId = 0;
+
         public IDishBuilder SetId(int id)
         {
             if (id <= 0)
@@ -54,13 +56,17 @@ namespace DeliverySystem.Builders
             if (!CanBuild())
                 throw new InvalidOperationException("Невозможно создать блюдо. Проверьте обязательные поля.");
 
+            if (_id <= 0)
+            {
+                _id = ++_lastDishId;
+            }
+
             return new Dish(_id, _name, _description, _price, _preparationTime);
         }
 
         public bool CanBuild()
         {
-            return _id > 0 &&
-                   !string.IsNullOrWhiteSpace(_name) &&
+            return !string.IsNullOrWhiteSpace(_name) &&
                    _price > 0 &&
                    _preparationTime >= 0;
         }

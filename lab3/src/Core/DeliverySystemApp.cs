@@ -88,20 +88,34 @@ namespace DeliverySystem.Core
             return Menu.Find(d => d.Id == id);
         }
 
-        public Order CreateOrder(int customerId, string deliveryAddress, bool isFastDelivery = false, string specialPreferences = "")
+        public Order CreateOrder(int customerId, string deliveryAddress,
+            bool isFastDelivery = false, string specialPreferences = "",
+            List<OrderItem> items = null)
         {
             var customer = FindCustomer(customerId);
             if (customer == null)
                 throw new ArgumentException($"Клиент с ID {customerId} не найден", nameof(customerId));
 
-            var order = new OrderBuilder()
+            var orderBuilder = new OrderBuilder()
                 .SetCustomer(customer)
                 .SetDeliveryAddress(deliveryAddress)
                 .SetFastDelivery(isFastDelivery)
                 .SetSpecialPreferences(specialPreferences)
-                .SetMediator(Mediator)
-                .Build();
+                .SetMediator(Mediator);
 
+            if (items != null && items.Any())
+            {
+                foreach (var item in items)
+                {
+                    orderBuilder.AddItem(item);
+                }
+            }
+            else
+            {
+                throw new ArgumentException("Заказ должен содержать хотя бы одно блюдо");
+            }
+
+            var order = orderBuilder.Build();
             Orders.Add(order);
             return order;
         }

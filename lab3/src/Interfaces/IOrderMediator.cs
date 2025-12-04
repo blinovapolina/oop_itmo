@@ -1,4 +1,8 @@
-namespace DeliveryOrderManagementSystem.Interfaces
+using DeliverySystem.Models;
+using DeliverySystem.Interfaces;
+
+
+namespace DeliverySystem.Interfaces
 {
     public interface IOrderMediator
     {

@@ -1,7 +1,7 @@
-using DeliveryOrderManagementSystem.Interfaces;
-using DeliveryOrderManagementSystem.Models;
+using DeliverySystem.Interfaces;
+using DeliverySystem.Models;
 
-namespace DeliveryOrderManagementSystem.Services
+namespace DeliverySystem.Services
 {
     public class DeliveryService : IOrderServiceComponent
     {
@@ -19,9 +19,9 @@ namespace DeliveryOrderManagementSystem.Services
         {
             Console.WriteLine($"Служба доставки: Поиск курьера для заказа номер {order.Id}");
 
-            if (order.Customer.HasPriorityDelivery())
+            if (order.Customer.HasFreeDelivery())
             {
-                Console.WriteLine($"Служба доставки: Приоритетный курьер назначен для VIP заказа номер {order.Id}");
+                Console.WriteLine($"Служба доставки: Приоритетный курьер c беслпатной доставкой назначен для VIP заказа номер {order.Id}");
             }
             else
             {
@@ -30,9 +30,9 @@ namespace DeliveryOrderManagementSystem.Services
             }
         }
 
-        public void HandleOrderStatusChanged(Order order, string oldStatus, string newStatus)
+        public void HandleOrderStateChanged(Order order, IOrderState oldStatus, IOrderState newStatus)
         {
-            if (newStatus == "В доставке")
+            if (newStatus.GetStatus() == "В доставке")
             {
                 Console.WriteLine($"Служба доставки: Курьер забрал заказ номер {order.Id}");
 

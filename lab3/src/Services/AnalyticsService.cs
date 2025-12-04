@@ -1,8 +1,9 @@
-using DeliveryOrderManagementSystem.Interfaces;
-using DeliveryOrderManagementSystem.Models;
-using DeliveryOrderManagementSystem.Enums;
+using DeliverySystem.Interfaces;
+using DeliverySystem.Models;
+using DeliverySystem.Enums;
+using DeliverySystem.Factories;
 
-namespace DeliveryOrderManagementSystem.Services
+namespace DeliverySystem.Services
 {
     public class AnalyticsService : IOrderServiceComponent
     {
@@ -44,9 +45,9 @@ namespace DeliveryOrderManagementSystem.Services
             PrintStatistics();
         }
 
-        public void HandleOrderStatusChanged(Order order, string oldStatus, string newStatus)
+        public void HandleOrderStateChanged(Order order, IOrderState oldStatus, IOrderState newStatus)
         {
-            if (newStatus == "Завершен")
+            if (newStatus.GetStatus() == "Завершен")
             {
                 var calculator = OrderCalculatorFactory.CreateCalculator(order);
                 var orderTotal = calculator.CalculateTotal(order);

@@ -1,10 +1,10 @@
-using DeliveryOrderManagementSystem.Interfaces;
+using DeliverySystem.Interfaces;
 using DeliverySystem.Models;
 using DeliverySystem.States;
-using DeliverySystem.Interfaces;
+using DeliverySystem.Enums;
 using System.Collections.Generic;
 
-namespace DeliveryOrderManagementSystem.Mediators
+namespace DeliverySystem.Mediators
 {
     public class OrderProcessingMediator : IOrderMediator
     {

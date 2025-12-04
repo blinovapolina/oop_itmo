@@ -15,7 +15,7 @@ namespace DeliverySystem.Models
 
         public decimal GetTotalPrice()
         {
-            return MenuItem.Price * Quantity;
+            return Dish.Price * Quantity;
         }
     }
 }

@@ -81,12 +81,12 @@ namespace DeliverySystem.Models
             ChangeState(new CompletedState());
         }
 
-        public void Cancel(string reason = "По желанию клиента")
+        public void Cancel()
         {
             if (State.GetStatus() == "Выполнен" || State.GetStatus() == "В доставке" || State.GetStatus() == "Курьер назначен")
                 throw new InvalidOperationException($"Этот заказ уже нельзя отменить: он находится в статусе '{State.GetStatus()}')");
 
-            ChangeState(new CancelledState(reason));
+            ChangeState(new CancelledState());
         }
 
         public string GetStatus() => State.GetStatus();

@@ -1,7 +1,7 @@
-using DeliveryOrderManagementSystem.Interfaces;
-using DeliveryOrderManagementSystem.Models;
+using DeliverySystem.Interfaces;
+using DeliverySystem.Models;
 
-namespace DeliveryOrderManagementSystem.Services
+namespace DeliverySystem.Services
 {
     public class KitchenService : IOrderServiceComponent
     {
@@ -19,15 +19,15 @@ namespace DeliveryOrderManagementSystem.Services
         {
             Console.WriteLine($"Кухня: Начало приготовления заказа номер {order.Id}");
 
-            var preparationTime = order.Items.Sum(i => i.MenuItem.PreparationTime);
+            var preparationTime = order.Items.Sum(i => i.Dish.PreparationTime);
             Console.WriteLine($"Кухня: ** Прошло {preparationTime} времени **");
 
             Console.WriteLine($"Кухня: Заказ номер {order.Id} готов");
         }
 
-        public void HandleOrderStatusChanged(Order order, string oldStatus, string newStatus)
+        public void HandleOrderStateChanged(Order order, IOrderState oldStatus, IOrderState newStatus)
         {
-            if (newStatus == "В доставке")
+            if (newStatus.GetStatus() == "В доставке")
             {
                 Console.WriteLine($"Кухня: Заказ номер {order.Id} передан на доставку");
             }

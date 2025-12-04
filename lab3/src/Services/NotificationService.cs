@@ -1,8 +1,8 @@
-using DeliveryOrderManagementSystem.Interfaces;
-using DeliveryOrderManagementSystem.Models;
+using DeliverySystem.Interfaces;
+using DeliverySystem.Models;
 
 
-namespace DeliveryOrderManagementSystem.Services
+namespace DeliverySystem.Services
 {
     public class NotificationService : IOrderServiceComponent
     {
@@ -23,9 +23,9 @@ namespace DeliveryOrderManagementSystem.Services
                 $"Ваш заказ номер {order.Id} принят. Спасибо, {order.Customer.Name}!");
         }
 
-        public void HandleOrderStatusChanged(Order order, string oldStatus, string newStatus)
+        public void HandleOrderStateChanged(Order order, IOrderState oldStatus, IOrderState newStatus)
         {
-            if (newStatus == "Завершен")
+            if (newStatus.GetStatus() == "Завершен")
             {
                 Console.WriteLine($"Сервис уведомлений: Уведомление о завершении заказа номер {order.Id}");
                 SendSMS(order.Customer.Phone,

@@ -1,4 +1,5 @@
 using DeliverySystem.Models;
+using DeliverySystem.Interfaces;
 
 namespace DeliverySystem.Builders.Interfaces
 {
@@ -8,11 +9,12 @@ namespace DeliverySystem.Builders.Interfaces
         IOrderBuilder SetDeliveryAddress(string address);
         IOrderBuilder SetFastDelivery(bool isFastDelivery = true);
         IOrderBuilder SetSpecialPreferences(string preferences);
+        IOrderBuilder SetMediator(IOrderMediator mediator);
 
         IOrderBuilder AddItem(OrderItem item);
         IOrderBuilder AddDish(Dish dish, int quantity, string instructions = "");
 
 
-        bool Validate(out List<string> errors);
+        bool Validate();
     }
 }

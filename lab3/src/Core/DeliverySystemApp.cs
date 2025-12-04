@@ -169,7 +169,7 @@ namespace DeliverySystem.Core
             if (order == null)
                 throw new ArgumentException($"Заказ с ID {orderId} не найден", nameof(orderId));
 
-            order.Cancel(reason);
+            order.Cancel();
         }
 
         public void CompletePreparation(int orderId)

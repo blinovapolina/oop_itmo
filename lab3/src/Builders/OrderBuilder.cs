@@ -11,6 +11,8 @@ namespace DeliverySystem.Builders
         private bool _isFastDelivery = false;
         private string _specialPreferences = "";
         private readonly List<OrderItem> _items = new();
+        private IOrderMediator _mediator;
+        private static int _lastOrderId = 0;
 
         public IOrderBuilder SetCustomer(Customer customer)
         {
@@ -23,9 +25,7 @@ namespace DeliverySystem.Builders
             if (string.IsNullOrWhiteSpace(address))
                 throw new ArgumentException("Адрес доставки не может быть пустым");
 
-            address = address.Trim();
-
-            _deliveryAddress = address;
+            _deliveryAddress = address.Trim();
             return this;
         }
 
@@ -47,6 +47,12 @@ namespace DeliverySystem.Builders
             return this;
         }
 
+        public IOrderBuilder SetMediator(IOrderMediator mediator)
+        {
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            return this;
+        }
+
         public IOrderBuilder AddItem(OrderItem item)
         {
             _items.Add(item ?? throw new ArgumentNullException(nameof(item), "Элемент заказа не может быть null"));
@@ -64,58 +70,70 @@ namespace DeliverySystem.Builders
             return this;
         }
 
-        public bool Validate(out List<string> errors)
+        public bool Validate()
         {
-            errors = new List<string>();
-
             if (_customer == null)
-                errors.Add("Не указан клиент");
+                throw new InvalidOperationException("Не указан клиент");
 
             if (string.IsNullOrWhiteSpace(_deliveryAddress))
-                errors.Add("Не указан адрес доставки");
+                throw new InvalidOperationException("Не указан адрес доставки");
+
+            if (_mediator == null)
+                throw new InvalidOperationException("Не указан медиатор");
 
             if (_items.Count == 0)
-                errors.Add("Заказ не содержит блюд");
+                throw new InvalidOperationException("Заказ не содержит блюд");
 
+            ValidateDeliveryAddress();
+            ValidateItems();
 
-            return errors.Count == 0;
+            return true;
         }
 
-
-        public int CalculateEstimatedPreparationTime()
+        private void ValidateDeliveryAddress()
         {
-            if (_items.Count == 0)
-                return 0;
+            if (_deliveryAddress.Length < 5)
+                throw new InvalidOperationException("Адрес доставки слишком короткий");
+        }
 
-            return _items.Max(i => i.Dish.PreparationTime) + 10; // +10 минут на упаковку
+        private void ValidateItems()
+        {
+            foreach (var item in _items)
+            {
+                if (item.Quantity > 100)
+                    throw new InvalidOperationException($"Слишком большое количество для блюда '{item.Dish.Name}': {item.Quantity}");
+
+                if (item.Dish.Price <= 0)
+                    throw new InvalidOperationException($"Некорректная цена для блюда '{item.Dish.Name}'");
+            }
         }
 
         public Order Build()
         {
-            List<string> errors;
-            if (!Validate(out errors))
-                throw new InvalidOperationException($"Невозможно создать заказ:\n{string.Join("\n", errors)}");
+            Validate();
 
-            var order = new Order(_customer, _items, _deliveryAddress, _isFastDelivery, _specialPreferences);
-
-            if (_autoApprove && order.GetStatus() == "Ожидает подтверждения")
-            {
-                try
-                {
-                    order.Approve();
-                }
-                catch (InvalidOperationException ex)
-                {
-                    Console.WriteLine($"Не удалось автоматически подтвердить заказ: {ex.Message}");
-                }
-            }
+            int orderId = GenerateOrderId();
+            var order = new Order(orderId, _customer, _items, _deliveryAddress,
+                                 _mediator, _isFastDelivery, _specialPreferences);
 
             return order;
         }
 
         public bool CanBuild()
         {
-            return Validate(out _);
+            try
+            {
+                return Validate();
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private int GenerateOrderId()
+        {
+            return ++_lastOrderId;
         }
     }
 }

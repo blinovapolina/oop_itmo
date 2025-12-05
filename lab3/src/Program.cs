@@ -7,8 +7,8 @@ class Program
     {
         try
         {
-            var demo = new DeliverySystemDemo();
-            demo.Run();
+            var deliverySystem = new DeliverySystemDemo();
+            deliverySystem.Run();
         }
         catch (Exception ex)
         {

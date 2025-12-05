@@ -57,8 +57,8 @@ namespace DeliverySystem.Tests
 
             var items = new List<OrderItem>
             {
-                new(dish1, 2), // 1000
-                new(dish2, 3)  // 450
+                new(dish1, 2),
+                new(dish2, 3)
             };
 
             var order = new Order(1, customer, items, "ул. Ленина, 10", mediatorMock.Object);
@@ -67,7 +67,7 @@ namespace DeliverySystem.Tests
             var subtotal = order.CalculateSubtotal();
 
             // Assert
-            Assert.Equal(1450m, subtotal); // 1000 + 450
+            Assert.Equal(1450m, subtotal);
         }
 
         [Fact]
@@ -81,7 +81,7 @@ namespace DeliverySystem.Tests
             var total = orderItem.GetTotalPrice();
 
             // Assert
-            Assert.Equal(1500m, total); // 500 * 3
+            Assert.Equal(1500m, total);
         }
 
         [Fact]

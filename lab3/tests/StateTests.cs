@@ -20,7 +20,7 @@ namespace DeliverySystem.Tests
 
             var order = new Order(1, customer, items, "ул. Ленина, 10", mediatorMock.Object);
 
-            // Act & Assert - Проверяем всю цепочку
+            // Act & Assert
             Assert.Equal("Ожидает подтверждения", order.GetStatus());
 
             order.Approve();
@@ -70,7 +70,7 @@ namespace DeliverySystem.Tests
             order.Approve();
             order.CompletePreparation();
             order.AssignCourier();
-            order.StartDelivery(); // Теперь заказ в доставке
+            order.StartDelivery();
 
             // Act & Assert
             Assert.Throws<InvalidOperationException>(() => order.Cancel());

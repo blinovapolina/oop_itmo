@@ -24,7 +24,6 @@ namespace DeliverySystem.Tests
             service.HandleOrderCreated(order);
 
             // Assert
-            // Проверяем, что сервис зарегистрировался
             mediatorMock.Verify(m => m.RegisterService(
                 "NotificationService",
                 It.IsAny<IOrderServiceComponent>()),

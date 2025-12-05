@@ -25,9 +25,9 @@ namespace DeliverySystem.Tests
 
             // Assert
             var subtotal = 300m;
-            var tax = subtotal * 0.1m; // 30
-            var delivery = 100m; // Стандартная доставка
-            var expected = subtotal + tax + delivery; // 300 + 30 + 100 = 430
+            var tax = subtotal * 0.1m;
+            var delivery = 100m;
+            var expected = subtotal + tax + delivery;
 
             Assert.Equal(expected, total);
         }
@@ -47,9 +47,9 @@ namespace DeliverySystem.Tests
 
             // Assert
             var subtotal = 2000m;
-            var tax = subtotal * 0.1m; // 200
-            var discount = subtotal * 0.10m; // 200 (VIP скидка 10%)
-            var expected = subtotal + tax - discount; // 2000 + 200 - 200 = 2000
+            var tax = subtotal * 0.1m;
+            var discount = subtotal * 0.10m;
+            var expected = subtotal + tax - discount;
 
             Assert.Equal(expected, total);
         }
@@ -69,10 +69,10 @@ namespace DeliverySystem.Tests
 
             // Assert
             var subtotal = 1000m;
-            var tax = subtotal * 0.1m; // 100
-            var delivery = 500m; // Экспресс доставка
-            var serviceCharge = subtotal * 0.02m; // 20 (2% сбор)
-            var expected = subtotal + tax + delivery + serviceCharge; // 1000 + 100 + 500 + 20 = 1620
+            var tax = subtotal * 0.1m;
+            var delivery = 500m;
+            var serviceCharge = subtotal * 0.02m;
+            var expected = subtotal + tax + delivery + serviceCharge;
 
             Assert.Equal(expected, total);
         }
@@ -92,10 +92,10 @@ namespace DeliverySystem.Tests
 
             // Assert
             var subtotal = 6000m;
-            var tax = subtotal * 0.1m; // 600
-            var discount = subtotal * 0.15m; // 900 (SuperVIP скидка 15%)
-            var serviceCharge = subtotal * 0.02m; // 120 (2% сбор)
-            var expected = subtotal + tax + serviceCharge - discount; // 6000 + 600 + 120 - 900 = 5820
+            var tax = subtotal * 0.1m;
+            var discount = subtotal * 0.15m;
+            var serviceCharge = subtotal * 0.02m;
+            var expected = subtotal + tax + serviceCharge - discount;
 
             Assert.Equal(expected, total);
         }

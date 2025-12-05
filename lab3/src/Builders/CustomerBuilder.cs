@@ -82,7 +82,7 @@ namespace DeliverySystem.Builders
         public Customer Build()
         {
             if (!CanBuild())
-                throw new InvalidOperationException("Невозможно создать клиента. Проверьте обязательные поля.");
+                throw new InvalidOperationException("Невозможно создать клиента. Проверьте обязательные поля!");
 
             if (_id <= 0)
             {

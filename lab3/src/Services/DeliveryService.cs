@@ -10,7 +10,7 @@ namespace DeliverySystem.Services
         public DeliveryService(IOrderMediator mediator)
         {
             Mediator = mediator;
-            mediator.RegisterService("DeliveryService", this);
+            Mediator.RegisterService("DeliveryService", this);
         }
 
         public string GetServiceName() => "DeliveryService";

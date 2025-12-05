@@ -6,9 +6,6 @@ using DeliverySystem.Interfaces;
 using DeliverySystem.Mediators;
 using DeliverySystem.Models;
 using DeliverySystem.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace DeliverySystem.Core
 {
@@ -113,34 +110,6 @@ namespace DeliverySystem.Core
             else
             {
                 throw new ArgumentException("Заказ должен содержать хотя бы одно блюдо");
-            }
-
-            var order = orderBuilder.Build();
-            Orders.Add(order);
-            return order;
-        }
-
-        public Order CreateOrderWithItems(int customerId, string deliveryAddress,
-                                         List<OrderItem> items, bool isFastDelivery = false,
-                                         string specialPreferences = "")
-        {
-            var customer = FindCustomer(customerId);
-            if (customer == null)
-                throw new ArgumentException($"Клиент с ID {customerId} не найден", nameof(customerId));
-
-            if (items == null || !items.Any())
-                throw new ArgumentException("Заказ должен содержать хотя бы один элемент", nameof(items));
-
-            var orderBuilder = new OrderBuilder()
-                .SetCustomer(customer)
-                .SetDeliveryAddress(deliveryAddress)
-                .SetFastDelivery(isFastDelivery)
-                .SetSpecialPreferences(specialPreferences)
-                .SetMediator(Mediator);
-
-            foreach (var item in items)
-            {
-                orderBuilder.AddItem(item);
             }
 
             var order = orderBuilder.Build();

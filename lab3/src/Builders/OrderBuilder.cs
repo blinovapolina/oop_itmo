@@ -123,14 +123,10 @@ namespace DeliverySystem.Builders
 
         public bool CanBuild()
         {
-            try
-            {
-                return Validate();
-            }
-            catch
-            {
-                return false;
-            }
+            return _customer != null &&
+                    !string.IsNullOrWhiteSpace(_deliveryAddress) &&
+                    _mediator != null &&
+                    _items.Count > 0;
         }
 
         private int GenerateOrderId()

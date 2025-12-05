@@ -10,7 +10,7 @@ namespace DeliverySystem.Services
         public KitchenService(IOrderMediator mediator)
         {
             Mediator = mediator;
-            mediator.RegisterService("KitchenService", this);
+            Mediator.RegisterService("KitchenService", this);
         }
 
         public string GetServiceName() => "KitchenService";
@@ -20,7 +20,7 @@ namespace DeliverySystem.Services
             Console.WriteLine($"Кухня: Начало приготовления заказа номер {order.Id}");
 
             var preparationTime = order.Items.Sum(i => i.Dish.PreparationTime);
-            Console.WriteLine($"Кухня: ** Прошло {preparationTime} времени **");
+            Console.WriteLine($"Кухня: ** Прошло {preparationTime} минут **");
 
             Console.WriteLine($"Кухня: Заказ номер {order.Id} готов");
         }

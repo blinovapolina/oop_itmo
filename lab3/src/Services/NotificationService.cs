@@ -11,7 +11,7 @@ namespace DeliverySystem.Services
         public NotificationService(IOrderMediator mediator)
         {
             Mediator = mediator;
-            mediator.RegisterService("NotificationService", this);
+            Mediator.RegisterService("NotificationService", this);
         }
 
         public string GetServiceName() => "NotificationService";

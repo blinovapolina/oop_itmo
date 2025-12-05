@@ -15,8 +15,8 @@ namespace DeliverySystem.Services
 
         public AnalyticsService(IOrderMediator mediator)
         {
-            Mediator = mediator;
-            mediator.RegisterService("AnalyticsService", this);
+            Mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            Mediator.RegisterService("AnalyticsService", this);
 
             TotalOrdersProcessed = 0;
             TotalRevenue = 0m;
@@ -58,8 +58,8 @@ namespace DeliverySystem.Services
                 var processingTime = DateTime.Now - order.OrderTime;
                 Console.WriteLine($"Аналитика: Время обработки заказа: {processingTime.TotalMinutes:F1} минут");
 
-                Console.WriteLine($"Аналитика: Сумма заказа: ${orderTotal:F2}, " +
-                                 $"Быстрая доставка: {(order.IsFastDelivery ? "Да" : "Нет")}");
+                Console.WriteLine($"Аналитика: Сумма заказа: {orderTotal:F2} рублей, " +
+                            $"Быстрая доставка: {(order.IsFastDelivery ? "Да" : "Нет")}");
 
                 PrintStatistics();
             }
@@ -75,10 +75,10 @@ namespace DeliverySystem.Services
             Console.WriteLine("Статистика заказов по категориям клиентов:");
             foreach (var category in OrdersByCategory)
             {
-                Console.WriteLine($"  • {category.Key}: {category.Value} заказов");
+                Console.WriteLine($"    {category.Key}: {category.Value} заказов");
             }
             Console.WriteLine($"Общее количество заказов: {TotalOrdersProcessed}");
-            Console.WriteLine($"Общая выручка: ${TotalRevenue:F2}");
+            Console.WriteLine($"Общая выручка: {TotalRevenue:F2} рублей");
         }
     }
 }

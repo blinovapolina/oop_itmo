@@ -2,7 +2,7 @@ using DeliverySystem.Interfaces;
 using DeliverySystem.Models;
 using DeliverySystem.States;
 using DeliverySystem.Enums;
-using System.Collections.Generic;
+
 
 namespace DeliverySystem.Mediators
 {
@@ -124,7 +124,7 @@ namespace DeliverySystem.Mediators
 
         private void ProcessCompletedOrder(Order order)
         {
-            Console.WriteLine($"Медиатор: Заказ номер {order.Id} завершен. Запуск финальных процессов...");
+            Console.WriteLine($"Медиатор: Заказ номер {order.Id} завершен. Секундочку...");
 
             if (Services.ContainsKey("AnalyticsService"))
             {

@@ -1,5 +1,4 @@
-﻿using System;
-using DeliverySystem.Core;
+﻿using DeliverySystem.Core;
 
 class Program
 {

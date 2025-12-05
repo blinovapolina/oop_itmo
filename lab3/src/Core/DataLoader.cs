@@ -2,10 +2,7 @@ using DeliverySystem.Builders;
 using DeliverySystem.Builders.Interfaces;
 using DeliverySystem.Enums;
 using DeliverySystem.Models;
-// using System;
-// using System.Collections.Generic;
-// using System.IO;
-// using System.Linq;
+
 
 namespace DeliverySystem.Core
 {
@@ -124,7 +121,7 @@ namespace DeliverySystem.Core
 
             foreach (var order in orders)
             {
-                orderLines.Add($"Заказ #{order.Id}: {order.Customer.Name}, {order.GetStatus()}");
+                orderLines.Add($"Заказ номер {order.Id}: {order.Customer.Name}, {order.GetStatus()}");
             }
 
             File.WriteAllLines(filePath, orderLines);

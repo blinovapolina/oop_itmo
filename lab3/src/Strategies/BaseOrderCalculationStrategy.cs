@@ -36,11 +36,9 @@ namespace DeliverySystem.Strategies
         protected virtual decimal CalculateCustomerDiscount(Order order, decimal subtotal)
             => subtotal * order.Customer.GetDiscountPercentage();
 
-        protected virtual decimal CalculateAdditionalCharges(Order order, decimal subtotal)
-            => 0m;
+        protected virtual decimal CalculateAdditionalCharges(Order order, decimal subtotal) => 0m;
 
-        protected virtual decimal CalculateAdditionalDiscounts(Order order, decimal subtotal)
-            => 0m;
+        protected virtual decimal CalculateAdditionalDiscounts(Order order, decimal subtotal) => 0m;
 
 
         protected decimal CalculateDeliveryPriceCore(Order order, decimal baseDeliveryPrice)
